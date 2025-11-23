@@ -329,7 +329,7 @@ setTimeout(() => {
 // ==================== API ROUTES ====================
 
 // API 1: /api/avitor - Trạng thái hiện tại
-app.get('/api/avitor', (req, res) => {
+app.get('/api', (req, res) => {
     let phien_hien_tai = gameData.currentSession;
     if (phien_hien_tai) {
         phien_hien_tai = (parseInt(phien_hien_tai) + 1).toString();
@@ -344,8 +344,8 @@ app.get('/api/avitor', (req, res) => {
     });
 });
 
-// API 2: /api/avitor/history - Lịch sử kết quả
-app.get('/api/avitor/history', (req, res) => {
+// API 2: /api/history - Lịch sử kết quả
+app.get('/api/history', (req, res) => {
     const limit = parseInt(req.query.limit) || 20;
     const history = gameData.history.slice(0, limit).map(game => ({
         phien: game.phien,
@@ -356,7 +356,7 @@ app.get('/api/avitor/history', (req, res) => {
 });
 
 // API 3: /api/avitor/checkpredict - XEM ĂN ĐƯỢC MẤY TAY
-app.get('/api/avitor/checkpredict', (req, res) => {
+app.get('/api/check', (req, res) => {
     res.json({
         thong_ke: {
             tong_so_tay: gameData.stats.total,
